@@ -25,12 +25,11 @@ SECRET_KEY = 'django-insecure-x_txyv!nk0v)3_%hv1&5i(5w+v5vrqkd8@xr_6zo4z#um6z728
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','www.afunimedsaocarlos.com.br','afunimedsaocarlos','54.163.93.29']
+ALLOWED_HOSTS = ['*','www.cotacaoplanounimed.com.br','cotacaoplanounimed.com.br']
 
 CSRF_TRUSTED_ORIGINS = [
-	'https://afunimedsaocarlos.com.br',
- 	'https://www.afunimedsaocarlos.com.br',
-	'https://54.163.93.29',
+	'https://cotacaoplanounimed.com.br',
+ 	'https://www.cotacaoplanounimed.com.br',
 ]
 # Application definition
 

@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Oswald:wght@200..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(0, 104, 55, 1);
+    background: linear-gradient(90deg, rgba(0, 104, 55, 1) 0%, rgba(47, 110, 63, 1) 100%);
+    font-family: "Kanit", sans-serif;
+    overflow-x: hidden;
+}
+
+/* HEADER */
+header {
+    max-height: 6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em; /* Espaçamento entre as logos */
+
+}
+
+/* LOGOS no header */
+/* --- */
+#img-logo, #img-logo-plano {
+    max-height: 8em;
+    width: auto;
+}
+
+/* Logo específicas */
+#logo-hapvida-copy {
+    max-height: 10em;
+    position: relative;
+    top: -3.6em;
+}
+
+li {
+    list-style: none;
+}
+
+.font-size-icons {
+    font-size: 5em;
+    padding: 0.2em;
+    color: #4767ae;
+}
+
+small {
+    font-size: 0.6em;
+    line-height: -10em;
+}
+
+#btn-enviar:disabled {
+    cursor: not-allowed;
+}
+
+/* ESTILIZAÇÃO DAS IMAGENS E FORMULÁRIOS   */
+#img-logo {
+    max-height: 8em;
+    width: auto;
+}
+
+#img-logo-plano {
+    max-height: 5em;
+    width: auto;
+}
+
+#beneficios-plano-saude {
+    width: 100%;
+}
+
+#btn-flutuante{
+    position: fixed;
+    top:90%;
+    left: 85%;
+    transform: translate(-50%, -50%); /* Ajuste o botão ao centro */
+    z-index: 9999; /* Garante que o botão fique por cima de outros elementos */
+}
+
+.text-auxiliar-btn-whatsapp{
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-whatsapp-flutuante {
+    color: #25D366;
+    font-size: 90px; /* Tamanho do ícone ou texto */
+    background-color: white;
+    border-radius: 50%; /* Faz o botão ser circular */
+    width: 80px; /* Largura do botão */
+    height: 80px; /* Altura do botão igual à largura */
+    display: flex; /* Ativa o Flexbox para centralização */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    margin: 0; /* Remove margens externas */
+    padding: 0; /* Remove espaçamentos internos */
+    box-sizing: border-box; /* Inclui borda no tamanho total */
+    cursor: pointer;
+}
+
+.fa-whatsapp{
+     color: #25D366;
+}
+
+.blink {
+    animation: blink-animation 5s steps(2, start) infinite;
+}
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* Cor de fundo do preloader */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Mantém o preloader acima de tudo */
+  }
+  
+  .spinner {
+    width: 80px;
+    height: 80px;
+    border: 5px solid #ccc; /* Cor do círculo */
+    border-top: 5px solid #3498db; /* Cor do topo do spinner */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Animação contínua */
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Definição da animação */
+@keyframes blink-animation {
+    0%, 50% {
+        opacity: 1; /* Totalmente visível */
+    }
+    51%, 100% {
+        opacity: 0; /* Totalmente invisível */
+    }
+}
+
+.box-shadow{
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* Sombras suaves */
+}
+  
+/* ESTILIZAÇÃO DAS MEDIAS QUERIES */
+@media(max-width: 375.97px) {
+    #img-logo {
+        max-height: 8em;
+        min-width: 10em;
+        position: relative;
+        left: -6em;
+        top: 1.5em;
+    }
+
+    #img-logo-plano {
+        height: 10em;
+        width: 10em;
+        position: relative;
+        left: 4em;
+        top: -5.5em;
+    }
+
+    #conteudo {
+        position: relative;
+        top: -2em;
+    }
+
+    #destaque-mobile {
+        position: relative;
+        top: 0em;
+        left: -5em;
+        max-height: 25em;
+        width: 150%;
+    }
+
+    #div-form {
+        width: 110%;
+        position: relative;
+        left: -1em;
+        top: -2em;
+        padding: 2em;
+    }
+
+    #banner{
+        position: relative;
+        top: -2em;
+    }
+
+    
+}
+
+@media(min-width: 376px) and (max-width: 767px) {
+    #img-logo {
+        position: relative;
+        top: 2em;
+        left: -8em;
+        
+    }
+
+    #logo-plano {
+        position: relative;
+        top: -5em;
+        left: 4em;
+    }
+
+    #header-contrate-plano{
+        margin-top: 2em;
+    }
+
+    #conteudo {
+        position: relative;
+        top: -2em;
+    }
+
+    #destaque-mobile {
+        position: relative;
+        top: 0em;
+        left: -5em;
+        max-height: 25em;
+        width: 150%;
+    }
+
+    #header-contrate-plano{
+        font-size: 4em;
+        text-wrap: nowrap;
+        font-weight: bold;
+        text-shadow: 1px #fff;
+    }
+
+    #div-form {
+        width: 110%;
+        position: relative;
+        left: -1em;
+        top: -2em;
+        padding: 2em;
+    }
+
+    #banner{
+        position: relative;
+        top: -2em;
+    }
+
+    
+}
+
+@media(min-width: 768px) and (max-width: 1023.99px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    #img-logo {
+        max-height: 8em;
+        min-width: 10em;
+        position: relative;
+        left: 0em;
+    }
+
+    #img-logo-plano {
+        height: 10em;
+        position: relative;
+        left: 0em;
+        top: 0em;
+    }
+
+    #destaque-mobile {
+        position: relative;
+        top: 0em;
+        left: -14em;
+        width: 140%;
+    }
+
+    #header-contrate-plano{
+        font-size: 4em;
+        text-wrap: nowrap;
+        font-weight: bold;
+        text-shadow: 1px #fff;
+    }
+
+    #conteudo {
+        position: relative;
+        top: 0em;
+    }
+
+    #div-form {
+        position: relative;
+        top: -8em;
+        min-width: 100%;
+        margin: 0;
+    }   
+
+    form{
+        padding: 2em;
+    }
+
+    #banner{
+        position: relative;
+        top:-6em;
+    }
+    
+    #central-vendas{
+        position: relative;
+        top: -6em;
+    }
+}
+
+@media(min-width: 1024px) {
+
+    #destaque-mobile {
+        display: none;
+    }
+
+    #container {
+        background-image: url('/static/img/avatar-medica-v2.png');
+        background-repeat: no-repeat;
+        background-position: 350px 3px;
+        min-height: 950px;
+    }
+
+    #img-logo {
+        position: relative;
+        right: 10%;
+        max-height: 8em;
+    }
+
+    #img-logo-plano {
+        position: relative;
+        left: 15%;
+        top: 0em;
+    }
+
+    #header-contrate-plano{
+        font-size: 6em;
+        text-wrap: nowrap;
+        font-weight: bold;
+        text-shadow: 1px #fff;
+        margin-left: 0.5em;
+    }
+
+    #div-form {
+        position: relative;
+        top: 2.5em;
+        left: 4em;
+        box-shadow: 5px 2px 1px #006837;
+        width: 130%;
+        height: 550px;
+        
+    }
+
+    #banner{
+        display: none;
+    }
+
+    #central-vendas{
+        position: relative;
+        top:0.5em;
+        font-size: 8em;
+    }
+
+    footer {
+        position: relative;
+        top: 10em;
+    }
+}
