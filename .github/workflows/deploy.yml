@@ -1,9 +1,9 @@
-name: Deploy to Lightsail
+name: Deploy
 
 on:
   push:
     branches:
-      - producao  # Substitua pela branch que deseja monitorar
+      - dev  # Substitua pela branch que deseja monitorar
 
 jobs:
   deploy:
@@ -18,25 +18,32 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa  # Corrige as permissões da chave privada
-          ssh-keyscan -H "${{ secrets.LIGHTSAIL_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -H "${{ secrets.HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Deploy to Lightsail
+      - name: Deploy
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.LIGHTSAIL_HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST }} << 'EOF'
             # Caminho para o seu projeto no servidor
-            cd /home/ubuntu/lp-af-saude-unimed
+            cd /srv/cotacaoplanounimed.com.br/www
             # Baixar a versão mais recente do código
-            git pull origin producao
-            # Ativar ambiente virtual (se necessário)
-            source linux-venv/bin/activate
+            git pull origin dev
+            # Entrar no diretório do projeto
+            cd lpunimed2
+            # Verificar se o ambiente virtual já existe, senão criar
+            if [ ! -d "prod-venv" ]; then
+                python3 -m venv prod-venv
+            fi
+            # Ativar ambiente virtual
+            source prod-venv/bin/activate
             # Instalar dependências
             pip install -r requirements.txt
             # Executar migrações (se for Django)
+            python manage.py makemigrations
             python manage.py migrate
             # Coletar arquivos estáticos (se for Django)
             python manage.py collectstatic --noinput
-            # Reiniciar Gunicorn
-            sudo systemctl restart gunicorn
+            # Reiniciar uWSGI
+            sudo systemctl restart uwsgi
             # Sair do diretório do projeto
             cd ..
             # Reiniciar Nginx
