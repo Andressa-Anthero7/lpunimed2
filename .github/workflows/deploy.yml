@@ -22,7 +22,7 @@ jobs:
 
       - name: Deploy
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no nix@ip-45-33-12-127.cloudezapp.io << 'EOF'
             # Caminho para o seu projeto no servidor
             cd /srv/cotacaoplanounimed.com.br/www
             # Baixar a versão mais recente do código
