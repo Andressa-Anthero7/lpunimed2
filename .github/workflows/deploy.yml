@@ -3,50 +3,60 @@ name: Deploy
 on:
   push:
     branches:
-      - dev  # Substitua pela branch que deseja monitorar
+      - dev  # Branch que dispara o deploy
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
+      - name: 📥 Check out code
         uses: actions/checkout@v3
 
-      - name: Set up SSH
+      - name: 🔑 Set up SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa  # Corrige as permissões da chave privada
+          chmod 600 ~/.ssh/id_rsa  # Ajusta permissões
           ssh-keyscan -H "${{ secrets.HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Deploy  
+      - name: 🚀 Deploy no Servidor
         run: |
-          echo "${{ secrets.USER_NAME }}@${{ secrets.HOST }}"
           ssh -o StrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST }} << 'EOF'
-            # Caminho para o seu projeto no servidor
+            set -e  # Faz o script parar se algum comando falhar
+            
+            echo "📂 Acessando o diretório do projeto..."
             cd /srv/cotacaoplanounimed.com.br/www
-            # Baixar a versão mais recente do código
+
+            echo "🔄 Atualizando código do repositório..."
+            git reset --hard  # Evita conflitos de merge
             git pull origin dev
-            # Entrar no diretório do projeto
+
+            echo "📂 Entrando no projeto..."
             cd lpunimed2
-            # Verificar se o ambiente virtual já existe, senão criar
+
+            echo "🐍 Verificando ambiente virtual..."
             if [ ! -d "prod-venv" ]; then
                 python3 -m venv prod-venv
             fi
-            # Ativar ambiente virtual
+
+            echo "🔄 Ativando ambiente virtual..."
             source prod-venv/bin/activate
-            # Instalar dependências
+
+            echo "📦 Instalando dependências..."
+            pip install --upgrade pip
             pip install -r requirements.txt
-            # Executar migrações (se for Django)
+
+            echo "📄 Aplicando migrações..."
             python manage.py makemigrations
             python manage.py migrate
-            # Coletar arquivos estáticos (se for Django)
+
+            echo "🖼️ Coletando arquivos estáticos..."
             python manage.py collectstatic --noinput
-            # Reiniciar uWSGI
+
+            echo "🚀 Reiniciando serviços..."
             sudo systemctl restart uwsgi
-            # Sair do diretório do projeto
-            cd ..
-            # Reiniciar Nginx
             sudo systemctl restart nginx
+
+            echo "✅ Deploy concluído com sucesso!"
           EOF
