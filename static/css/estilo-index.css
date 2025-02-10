@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Lato:wght@100;300;400;700;900&family=Nunito:wght@200..900&display=swap');
 
 * {
     margin: 0;
@@ -23,6 +23,9 @@ header {
 
 }
 
+#header-contrate-plano{
+    font-family: "Nunito", sans-serif;
+}
 /* LOGOS no header */
 /* --- */
 #img-logo, #img-logo-plano {
@@ -207,12 +210,11 @@ small {
     
 }
 
-@media(min-width: 376px) and (max-width: 767px) {
+@media(min-width: 376px) and (max-width: 389.97px) {
     #img-logo {
         position: relative;
         top: 2em;
         left: -8em;
-        
     }
 
     #logo-plano {
@@ -243,6 +245,57 @@ small {
         text-wrap: nowrap;
         font-weight: bold;
         text-shadow: 1px #fff;
+    }
+
+    #div-form {
+        width: 110%;
+        position: relative;
+        left: -1em;
+        top: -2em;
+        padding: 2em;
+    }
+
+    #banner{
+        position: relative;
+        top: -2em;
+    }
+
+    
+}
+
+@media(min-width: 390px) and (max-width: 767px) {
+    #img-logo {
+        position: relative;
+        top: 0em;
+        left: 0em;
+    }
+
+    #logo-plano {
+        position: relative;
+        top: 0em;
+        left: 0em;
+    }
+
+    #conteudo {
+        position: relative;
+        top: -2em;
+    }
+
+    #destaque-mobile {
+        position: relative;
+        top: 0em;
+        left: -5em;
+        max-height: 25em;
+        width: 150%;
+    }
+
+    #header-contrate-plano{
+        font-size: 2em;
+        text-wrap: nowrap;
+        font-weight: bold;
+        text-shadow: 1px #fff;
+        margin-top: 2em;
+        
     }
 
     #div-form {
@@ -324,19 +377,13 @@ small {
     }
 }
 
-@media(min-width: 1024px) and (max-width: 1339.97px) {
+@media(min-width: 1024px) {
 
     #destaque-mobile {
-        display: none;
+        
     }
 
-    #container {
-        background-image: url('/static/img/avatar-medica-v2.png');
-        background-repeat: no-repeat;
-        background-position: 350px 3px;
-        min-height: 950px;
-    }
-
+    
     #img-logo {
         position: relative;
         right: 10%;
@@ -350,11 +397,12 @@ small {
     }
 
     #header-contrate-plano{
-        font-size: 6em;
+        font-size: 5em;
         text-wrap: nowrap;
         font-weight: bold;
         text-shadow: 1px #fff;
         margin-left: 0.5em;
+        
     }
 
     #div-form {
@@ -375,6 +423,10 @@ small {
         position: relative;
         top:0.5em;
         font-size: 8em;
+    }
+
+    #btn-central-vendas{
+        font-size: 0.5em;
     }
 
     footer {
