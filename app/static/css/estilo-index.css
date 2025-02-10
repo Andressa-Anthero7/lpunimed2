@@ -386,7 +386,7 @@ small {
     #container {
         background-image: url('/static/img/avatar-medica-v2.png');
         background-repeat: no-repeat;
-        background-position: 100% 3px;
+        background-position: 150% 3px;
         min-height: 950px;
     }
 
