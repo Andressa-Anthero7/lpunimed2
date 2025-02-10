@@ -24,16 +24,20 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST }} << 'EOF'
             set -e  # Faz o script parar se algum comando falhar
-            
+
             echo "📂 Acessando o diretório do projeto..."
             cd /srv/cotacaoplanounimed.com.br/www
 
+            # Verifica se o repositório foi clonado
+            if [ ! -d "lpunimed2/.git" ]; then
+                echo "🔄 Repositório não encontrado. Clonando..."
+                git clone https://github.com/seuusuario/seurepositorio.git lpunimed2
+            fi
+
             echo "🔄 Atualizando código do repositório..."
+            cd lpunimed2
             git reset --hard  # Evita conflitos de merge
             git pull origin dev
-
-            echo "📂 Entrando no projeto..."
-            cd lpunimed2
 
             echo "🐍 Verificando ambiente virtual..."
             if [ ! -d "prod-venv" ]; then
