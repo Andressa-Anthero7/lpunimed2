@@ -28,7 +28,7 @@
 
     <!-- JS -->
     <script type="text/javascript" src="{% static 'js/script-index.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/script-modal.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script-form.js' %}"></script>
 </head>
 
 <body>
@@ -52,7 +52,7 @@
             <!-- Copy da LP -->
             <div id="copy-lp" class="text-center p-2">
                 <div id="text-copy-lp" class="text-white p-3 col-lg-5">
-                    <h1 id="header-contrate-plano" class="mt-2">Seja Cliente Unimed.</h1>
+                    <h1 id="header-contrate-plano" class="mt-2">Seja Cliente Unimed</h1>
 
                     <!-- Imagem destaque para mobile -->
                     <img src="{% static 'img/avatar-medica.png' %}" loading="lazy" id="destaque-mobile" class="m-0 p-0 border border-dark" alt="hospital-unimed-mobile">
@@ -89,7 +89,7 @@
                                     <label for="aceito-termos">
                                         <input type="checkbox" id="aceito-termos" name="aceito_termos" disabled>
                                         <small class="text-center text-dark">*Obrigatório</small>
-                                        <small class="text-center text-dark text-justify">Declaro que li e aceito a Política de Privacidade...</small>
+                                        <small class="text-center text-dark text-justify">Ao enviar este formulário, você concorda com o tratamento dos seus dados pessoais nos termos da Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018) e conforme nossa Política de Privacidade. Utilizamos suas informações para entrar em contato e oferecer nossos serviços. Seus dados serão mantidos em sigilo e não serão compartilhados com terceiros sem sua autorização. Você pode solicitar a exclusão dos seus dados a qualquer momento.</small>
                                     </label>
                                     <br>
                                 </div>
@@ -120,7 +120,7 @@
                 $(document).ready(function() {
                     $("#btn-central-vendas").click(function() {
                         // Abre o WhatsApp em uma nova aba
-                        window.open("https://wa.me/5516993379492?text=Olá%20gostaria%20de%20atendimento%20pela%20central%20de%20vendas%20AF%20saúde%20-Norden!", "_blank");
+                        window.open("https://wa.me/55{{config_wa}}?text=Olá%20gostaria%20de%20atendimento%20pela%20central%20de%20vendas%20AF%20saúde%20-Norden!", "_blank");
                     });
                 });
             </script>
