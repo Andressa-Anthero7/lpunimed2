@@ -1,0 +1,59 @@
+name: Deploy Django to Digital Ocean
+
+on:
+  push:
+    branches:
+      - dev  # Altere conforme necessário
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.HOST }}" >> ~/.ssh/known_hosts
+
+          
+      - name: Deploy to Lightsail
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST }} << 'EOF'
+            set -e  # Interrompe o script se algum comando falhar
+            
+            echo "🚀 Iniciando deploy no Lightsail..."
+
+            # Navegar até o diretório do projeto
+            cd /home/ubuntu/unimed2
+
+            echo "🔄 Atualizando código..."
+            git pull origin dev
+
+            echo "🛠️ Ativando ambiente virtual..."
+            source /home/ubuntu/prod-venv/bin/activate
+
+            echo "📦 Instalando dependências..."
+            pip install -r requirements.txt
+
+            echo "🔄 Aplicando migrações..."
+            python manage.py migrate
+
+            echo "🎨 Coletando arquivos estáticos..."
+            python manage.py collectstatic --noinput
+
+            echo "✅ Ambiente virtual finalizado!"
+            deactivate  # Desativa o ambiente virtual
+
+            echo "🚀 Reiniciando Gunicorn..."
+            sudo systemctl reload gunicorn
+
+            echo "🌐 Reiniciando Nginx..."
+            sudo systemctl reload nginx
+
+            echo "✅ Deploy finalizado com sucesso!"
+          EOF
