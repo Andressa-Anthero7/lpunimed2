@@ -164,8 +164,7 @@ small {
 }
   
 /* ESTILIZAÇÃO DAS MEDIAS QUERIES */
-@media(max-width: 676.97px) {
-    
+@media(max-width: 375.97px) {
     #img-logo {
         max-height: 8em;
         min-width: 10em;
@@ -192,7 +191,7 @@ small {
         top: 0em;
         left: -5em;
         max-height: 25em;
-        width: 100%;
+        width: 150%;
     }
 
     #div-form {
@@ -211,7 +210,110 @@ small {
     
 }
 
+@media(min-width: 376px) and (max-width: 389.97px) {
+    #img-logo {
+        position: relative;
+        top: 0em;
+        left: 0em;
+    }
 
+    #logo-plano {
+        position: relative;
+        top: 0em;
+        left: 0em;
+    }
+
+    #header-contrate-plano{
+        margin-top: 2em;
+        font-size: 0.1em;
+    }
+
+    #conteudo {
+        position: relative;
+        top: -2em;
+    }
+
+    #destaque-mobile {
+        position: relative;
+        top: 0em;
+        left: -5em;
+        max-height: 25em;
+        width: 150%;
+    }
+
+    #header-contrate-plano{
+        font-size: 4em;
+        text-wrap: nowrap;
+        font-weight: bold;
+        text-shadow: 1px #fff;
+    }
+
+    #div-form {
+        width: 110%;
+        position: relative;
+        left: -1em;
+        top: -2em;
+        padding: 2em;
+    }
+
+    #banner{
+        position: relative;
+        top: -2em;
+    }
+
+    
+}
+
+@media(min-width: 390px) and (max-width: 767px) {
+    #img-logo {
+        position: relative;
+        top: 0em;
+        left: 0em;
+    }
+
+    #logo-plano {
+        position: relative;
+        top: 0em;
+        left: 0em;
+    }
+
+    #conteudo {
+        position: relative;
+        top: -2em;
+    }
+
+    #destaque-mobile {
+        position: relative;
+        top: 0em;
+        left: -5em;
+        max-height: 25em;
+        width: 150%;
+    }
+
+    #header-contrate-plano{
+        font-size: 2em;
+        text-wrap: nowrap;
+        font-weight: bold;
+        text-shadow: 1px #fff;
+        margin-top: 2em;
+        
+    }
+
+    #div-form {
+        width: 110%;
+        position: relative;
+        left: -1em;
+        top: -2em;
+        padding: 2em;
+    }
+
+    #banner{
+        position: relative;
+        top: -2em;
+    }
+
+    
+}
 
 @media(min-width: 768px) and (max-width: 1023.99px) {
     body {
